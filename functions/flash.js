@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 
 exports.handler = async () => {
   const api = new URL("https://api.apiflash.com/v1/urltoimage");
-  const urlToView = new URL("http://twitch.com/");
+  const urlToView = new URL("https://www.twitch.tv/thesolidiceman");
 
   api.searchParams.set("access_key", process.env.ACCESS_KEY);
   api.searchParams.set("url", urlToView);
