@@ -7,7 +7,7 @@ async function onButtonClick() {
   );
 
   const img = document.createElement("img");
-  img.src = screen.url;
+  img.src = screen;
   img.alt = "twitch site";
 
   container.appendChild(img);
