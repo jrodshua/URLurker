@@ -2,8 +2,8 @@ const container = document.querySelector(".screenshot");
 const button = document.querySelector("#button");
 
 async function onButtonClick() {
-  const screen = await fetch("/.netlify/functions/flash").then((response) =>
-    response.json()
+  const screen = await fetch("/.netlify/functions/flash-background").then(
+    (response) => response.json()
   );
 
   const img = document.createElement("img");
