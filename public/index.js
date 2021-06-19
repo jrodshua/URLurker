@@ -3,13 +3,18 @@ const button = document.querySelector("#button");
 
 async function onButtonClick() {
   const screen = await fetch("/.netlify/functions/flash-background").then(
-    (response) => response.json()
+    async (response) => await response.json()
   );
 
   const img = document.createElement("img");
-  img.src = screen;
-  img.alt = "solidiceman twitch channel";
+  const loadText = document.createElement("p");
 
+  if (!screen) {
+    loadText.innerText("Loading...");
+    container.appendChild(loadText);
+  }
+  img.src = screen;
+  img.alt = "solidiceman on twitch";
   container.appendChild(img);
 }
 
