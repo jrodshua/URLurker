@@ -15,8 +15,14 @@
         <h2>Enter a url below:</h2>
         <form id="api-form">
           <label for="form-url"
-            >Website URL to review
-            <input type="text" id="form-url" name="form-url"
+            >Enter entire url
+            <input
+              type="url"
+              id="form-url"
+              name="form-url"
+              placeholder="https://example.com"
+              pattern="https?://.*"
+              required
           /></label>
           <button type="submit" id="button">get screenshot</button>
         </form>
