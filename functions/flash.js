@@ -9,6 +9,7 @@ exports.handler = async (event) => {
   const formUrl = new URL(url);
 
   api.searchParams.set("access_key", process.env.ACCESS_KEY);
+  api.searchParams.set("thumbnail_width", 720);
   api.searchParams.set("url", formUrl);
 
   const data = await fetch(api)

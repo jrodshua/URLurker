@@ -13,3 +13,14 @@
   max-width: 500px;
   width: 50%;
 }
+
+.screenshot {
+  width: 720px;
+  height: auto;
+}
+
+.screenshot img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+}
