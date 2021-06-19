@@ -1,6 +1,5 @@
 require("dotenv").config();
 const { URL } = require("url");
-// const { writeFile } = require('fs');
 const fetch = require("node-fetch");
 
 exports.handler = async () => {
@@ -10,25 +9,26 @@ exports.handler = async () => {
   api.searchParams.set("access_key", process.env.ACCESS_KEY);
   api.searchParams.set("url", urlToView);
 
-  function getScreenShot(apiUrl, retry = 2) {
-    return fetch(apiUrl)
-      .then(async (response) => {
-        if (response.ok) {
-          return await response
-            .buffer()
-            .then((buf) => `data:image/jpeg;base64,` + buf.toString("base64"));
-        }
+  // const data = await fetch(api);
+  // if (!response.ok) {
+  //   throw new Error(
+  //     "There was an error, please refresh your browser and try again"
+  //   );
+  // }
 
-        if (retry > 0) {
-          return getScreenShot(apiUrl, retry - 1);
-        } else {
-          throw new Error(response);
-        }
-      })
-      .catch(console.error);
-  }
+  const getData = async (apiUrl) => {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(
+        "There was an error, please refresh your browser and try again"
+      );
+    }
+    return response
+      .buffer()
+      .then((buf) => `data:image/jpeg;base64,` + buf.toString("base64"));
+  };
 
-  const data = getScreenShot(api);
+  const data = getData(api);
 
   // const data = await fetch(api)
   //   .then((response) => response.buffer())

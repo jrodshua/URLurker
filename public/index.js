@@ -2,28 +2,23 @@ const container = document.querySelector(".screenshot");
 const button = document.querySelector("#button");
 
 async function onButtonClick() {
-  // const screen = await fetch("/.netlify/functions/flash").then((response) => response.json());
-  const screenGrab = await fetch("/.netlify/functions/flash").then(
-    (response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        const resError = response.text();
-        return Promise.reject(new Error(resError));
-      }
-    }
+  const screenShot = await fetch("/.netlify/functions/flash").then((response) =>
+    response.json()
   );
 
+  if (screenShot === "error") {
+    const errorText = document.createElement("span");
+    errorText.innerText(
+      "There was an error, please refresh your browser and try again"
+    );
+    container.appendChild(errorText);
+  }
+
   const img = document.createElement("img");
-  const loadingMessage = document.createElement("span");
+  img.src = screen;
+  img.alt = "Jrodshua twitch channel";
 
-  img.src = screenGrab;
-  img.alt = "thesolidiceman twitch channel";
-  loadingMessage.innerText = "Loading...";
-
-  screenGrab
-    ? container.appendChild(img)
-    : container.appendChild(loadingMessage);
+  container.appendChild(img);
 }
 
 button.addEventListener("click", onButtonClick);
