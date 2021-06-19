@@ -11,11 +11,7 @@ exports.handler = async () => {
 
   const data = await fetch(api)
     .then((response) => response.buffer())
-    .then((buf) => `data:image/jpeg;base64,` + buf.toString("base64"))
-    .catch((error) => {
-      console.error("error:", error);
-      return "error";
-    });
+    .then((buf) => `data:image/jpeg;base64,` + buf.toString("base64"));
 
   return {
     statusCode: 200,
