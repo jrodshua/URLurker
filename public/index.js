@@ -1,46 +1,39 @@
 const container = document.querySelector(".screenshot");
-// const button = document.querySelector("#button");
 const form = document.querySelector("#api-form");
 
-// async function getScreenShot() {
-//   const data = await fetch("/.netlify/functions/flash")
-//     .then((response) => response.json())
-//     .catch((error) => error);
+function isLoading(bool) {
+  const loading = document.querySelector(".not-loading");
 
-//   return data;
-// }
+  if (bool) {
+    loading.classList.add(".is-loading");
+  } else {
+    loading.classList.remove(".is-loading");
+  }
+}
 
-// async function onButtonClick() {
-//   const apiData = await getScreenShot();
+async function getScreenShot(urlObj) {
+  const result = await fetch("/.netlify/functions/flash", {
+    method: "POST",
+    body: JSON.stringify(urlObj),
+  }).then((response) => response.json());
 
-//   if (!apiData) {
-//     const errorText = document.createElement("span");
-//     errorText.innerText = "there was an error, please try again";
-//     container.appendChild(errorText);
-//   }
-//   const img = document.createElement("img");
-//   img.src = apiData;
-//   img.alt = "jrodshua twitch";
-//   container.appendChild(img);
-// }
-
-// button.addEventListener("click", onButtonClick);
+  isLoading(false);
+  return result;
+}
 
 async function handleSubmit(event) {
   event.preventDefault();
 
   const data = new FormData(event.target);
+  const url = { url: data.get("form-url") };
 
-  const result = await fetch("/.netlify/functions/flash", {
-    method: "POST",
-    body: JSON.stringify({
-      url: data.get("form-url"),
-    }),
-  }).then((response) => response.json());
+  isLoading(true);
+  const apiImg = await getScreenShot(url);
 
   const img = document.createElement("img");
-  img.src = result;
-  img.alt = "jrodshua twitch";
+  img.src = apiImg;
+  img.alt = `Screenshot of ${url.url}`;
+
   container.appendChild(img);
 }
 

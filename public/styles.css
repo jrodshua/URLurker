@@ -24,3 +24,11 @@
   height: auto;
   max-height: 100%;
 }
+
+.not-loading {
+  display: none;
+}
+
+.is-loading {
+  display: block;
+}
