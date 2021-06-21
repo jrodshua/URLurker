@@ -4,30 +4,58 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Net Test</title>
+    <title>URLurker</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page">
-      <h1>Check a url</h1>
-      <span class="loader not-loading">Loading...</span>
-      <div class="screenshot"></div>
-      <div class="center">
-        <h2>Enter a url below:</h2>
-        <form id="api-form">
-          <label for="form-url"
-            >Enter entire url
-            <input
-              type="url"
-              id="form-url"
-              name="form-url"
-              placeholder="https://example.com"
-              pattern="https?://.*"
-              required
-          /></label>
-          <button type="submit" id="button">get screenshot</button>
-        </form>
-      </div>
+      <header>
+        <div class="header">
+          <div class="logo">
+            <a href="/">URLurker</a>
+          </div>
+          <nav class="nav">
+            <a href="">View on GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <div class="hero">
+          <h1>A tool for streamers to help with viewer shared links</h1>
+          <h4>
+            Simply enter a url, click the button, and within seconds get a
+            screenshot of the page contents.
+          </h4>
+          <h4>
+            Now equiped with context, improve your interactions with your
+            audience by letting them know the things they share won't go
+            unnoticed!
+          </h4>
+        </div>
+
+        <div class="center">
+          <h2>Enter a link:</h2>
+          <p>Please enter the entire url link, including "https://"</p>
+          <form id="api-form">
+            <label for="form-url">
+              <input
+                type="url"
+                id="form-url"
+                name="form-url"
+                placeholder="https://example.com"
+                pattern="https?://.*"
+                required
+            /></label>
+            <button type="submit" id="button">get screenshot</button>
+          </form>
+        </div>
+
+        <div class="content">
+          <span class="loader not-loading">Loading...</span>
+          <div class="screenshot"></div>
+        </div>
+      </main>
     </div>
 
     <script src="./index.js"></script>
